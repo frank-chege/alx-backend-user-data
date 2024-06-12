@@ -8,5 +8,7 @@ def filter_datum(fields: List[str], redaction: str, message: str, separator: str
     #search for the field pattern in the message
     for field in fields:
         pat = re.compile(f'{field}=(.*?){separator}')
-        message = pat.sub(f'{field}={redaction}{separator}', message)
+        match = pat.search(message)
+        if match:
+            message = re.sub(match.group(1), redaction, message)
     return message
