@@ -49,7 +49,7 @@ def get_logger()->logging.Logger:
 PII_FIELDS = ('name','email','phone','password','ip')
 
 
-def get_db():
+def get_db()->mysql.connector:
     '''creates a connection to mysql db'''
     con = mysql.connector.connect(
         host = os.getenv('PERSONAL_DATA_DB_HOST'),
