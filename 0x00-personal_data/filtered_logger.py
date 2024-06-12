@@ -50,12 +50,18 @@ def get_logger()->logging.Logger:
 PII_FIELDS = ('name','email','phone','password','ip')
 
 
-def get_db()->MySQLConnection:
-    '''creates a connection to mysql db'''
-    con = mysql.connector.connect(
-        host = os.getenv('PERSONAL_DATA_DB_HOST'),
-        database = os.getenv('PERSONAL_DATA_DB_NAME'),
-        user = os.getenv('PERSONAL_DATA_DB_USERNAME'),
-        password = os.getenv('PERSONAL_DATA_DB_PASSWORD')
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """Creates a connector to a database.
+    """
+    db_host = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = os.getenv("PERSONAL_DATA_DB_NAME", "")
+    db_user = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
+    db_pwd = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
+    connection = mysql.connector.connect(
+        host=db_host,
+        port=3306,
+        user=db_user,
+        password=db_pwd,
+        database=db_name,
     )
-    return con
+    return connection
