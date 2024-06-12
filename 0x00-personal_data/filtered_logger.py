@@ -3,6 +3,8 @@
 import re
 from typing import List
 import logging
+import os
+import mysql.connector
 
 def filter_datum(fields: List[str], redaction: str, message: str, separator: str)->str:
     '''filter a log message'''
@@ -45,3 +47,14 @@ def get_logger()->logging.Logger:
     return log
 
 PII_FIELDS = ('name','email','phone','password','ip')
+
+
+def get_db():
+    '''creates a connection to mysql db'''
+    con = mysql.connector.connect(
+        host = os.getenv('PERSONAL_DATA_DB_HOST'),
+        database = os.getenv('PERSONAL_DATA_DB_NAME'),
+        user = os.getenv('PERSONAL_DATA_DB_USERNAME'),
+        password = os.getenv('PERSONAL_DATA_DB_PASSWORD')
+    )
+    return con
