@@ -35,7 +35,7 @@ class RedactingFormatter(logging.Formatter):
         message = filter_datum(self.fields, self.REDACTION, record, self.SEPARATOR)
         return message
 
-def get_logger():
+def get_logger()->logging.Logger:
     log = logging.Logger('user_data', logging.INFO)
     log.propagate = False
     stream_H = logging.StreamHandler()
