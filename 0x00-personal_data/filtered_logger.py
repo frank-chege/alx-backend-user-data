@@ -5,6 +5,7 @@ from typing import List
 import logging
 import os
 import mysql.connector
+from mysql.connector import MySQLConnection
 
 def filter_datum(fields: List[str], redaction: str, message: str, separator: str)->str:
     '''filter a log message'''
@@ -49,7 +50,7 @@ def get_logger()->logging.Logger:
 PII_FIELDS = ('name','email','phone','password','ip')
 
 
-def get_db()->mysql.connector:
+def get_db()->MySQLConnection:
     '''creates a connection to mysql db'''
     con = mysql.connector.connect(
         host = os.getenv('PERSONAL_DATA_DB_HOST'),
