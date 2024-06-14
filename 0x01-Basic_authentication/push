@@ -1,3 +1,3 @@
 git add .
-git commit -m 'user data'
+git commit -m 'basic authentication'
 git push
