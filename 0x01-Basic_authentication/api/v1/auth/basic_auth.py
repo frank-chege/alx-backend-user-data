@@ -25,4 +25,4 @@ class BasicAuth(Auth):
             decoded_str = base64.decode(base64_authorization_header)
         except:
             None
-        return decoded_str.decode('UTF-8')
+        return decoded_str
