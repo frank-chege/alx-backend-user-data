@@ -1,4 +1,4 @@
-#usr/bin/env python3
+#!/usr/bin/env python3
 '''implement basic authentication'''
 from flask import request
 from typing import List, TypeVar
