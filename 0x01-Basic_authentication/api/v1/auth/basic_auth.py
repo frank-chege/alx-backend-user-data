@@ -4,6 +4,7 @@
 from .auth import Auth
 from models.user import User
 import re
+from typing import TypeVar
 import base64
 
 class BasicAuth(Auth):
