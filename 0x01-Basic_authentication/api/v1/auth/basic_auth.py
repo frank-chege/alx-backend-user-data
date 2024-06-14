@@ -15,6 +15,3 @@ class BasicAuth(Auth):
             return None
         tokens = authorization_header.split('Basic')
         return tokens[1]
-test = BasicAuth()
-res = test.extract_base64_authorization_header('Basic1234')
-print(res)
