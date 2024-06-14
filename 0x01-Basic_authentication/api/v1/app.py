@@ -15,7 +15,7 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 auth = getenv('AUTH_TYPE')
 if auth:
-    Auth = __import__('api.v1.auth.auth').Auth
+    Auth = __import__('api/v1/auth/auth').Auth
     auth = Auth()
 
 @app.before_request
