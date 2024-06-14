@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''create basic auth class'''
 
-from api.v1.auth.auth import Auth
+from .auth import Auth
 from models.user import User
 import re
 import base64
