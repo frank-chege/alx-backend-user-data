@@ -10,8 +10,11 @@ class BasicAuth(Auth):
         '''returns the base64 part of the auth header'''
         if authorization_header is None or (not isinstance(authorization_header, str)):
             return None
-        pat = re.compile('Basic(.*)$')
+        pat = re.compile('Basic(.*)')
         if not pat.match(authorization_header):
             return None
         tokens = authorization_header.split('Basic')
         return tokens[1]
+test = BasicAuth()
+res = test.extract_base64_authorization_header('Basic1234')
+print(res)
