@@ -37,7 +37,6 @@ class DB:
             email = email,
             hashed_password = hashed_password
         )
-        self._session.add(new_user)
+        user = self._session.add(new_user)
         self._session.commit()
-        self.__session.refresh(new_user)
-        return new_user
+        return user
