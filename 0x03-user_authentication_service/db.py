@@ -44,5 +44,5 @@ class DB:
     
     def find_user_by(self, *kwargs: Any)->Any:
         '''fetch data based on the args passed'''
-        result = self.__session.get(User).filter_by(kwargs).first()
+        result = self.__session.query(User).filter_by(kwargs).first()
         return result
