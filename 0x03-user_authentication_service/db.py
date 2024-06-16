@@ -31,7 +31,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
     
-    def add_user(self, email: str, hashed_password: str):
+    def add_user(self, email: str, hashed_password: str)->User:
         '''adds a user's credentials to the db and returns the user instance'''
         new_user = User(
             email = email,
@@ -39,4 +39,5 @@ class DB:
         )
         self._session.add(new_user)
         self._session.commit()
+        self.__session.refresh(new_user)
         return new_user
