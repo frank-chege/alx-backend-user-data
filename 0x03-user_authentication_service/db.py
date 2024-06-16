@@ -50,7 +50,7 @@ class DB:
         key = next(iter(kwargs))
         value = kwargs.get(key)
         if hasattr(User, key):
-            result = self._session.query(User).filter_by(getattr(User, key)==value).first()
+            result = self._session.query(User).filter(getattr(User, key) == value).first()
         else:
             raise InvalidRequestError
         if result is None:
