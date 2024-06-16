@@ -6,7 +6,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
-
+from sqlalchemy.exc import NoResultFound, InvalidRequestError
+from typing import Any
 from user import Base, User
 
 
@@ -37,6 +38,11 @@ class DB:
             email = email,
             hashed_password = hashed_password
         )
-        user = self._session.add(new_user)
+        self._session.add(new_user)
         self._session.commit()
         return new_user
+    
+    def find_user_by(self, *kwargs: Any)->Any:
+        '''fetch data based on the args passed'''
+        result = self.__session.get(User).filter_by(kwargs).first()
+        return result
