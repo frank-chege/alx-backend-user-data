@@ -39,4 +39,4 @@ class DB:
         )
         user = self._session.add(new_user)
         self._session.commit()
-        return user
+        return new_user
