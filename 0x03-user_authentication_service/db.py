@@ -57,3 +57,12 @@ class DB:
             raise NoResultFound
         return result
 
+    def update_user(self, user_id: int, **kwargs)->None:
+        '''updates a user's details'''
+        user = self.find_user_by(user_id)
+        key = next(iter(kwargs))
+        try:    
+            user.key = kwargs.get(key)
+            self._session.commit()
+        except:
+            raise ValueError
