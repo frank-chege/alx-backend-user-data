@@ -42,7 +42,12 @@ class DB:
         self._session.commit()
         return new_user
     
-    def find_user_by(self, *kwargs: Any)->Any:
+    def find_user_by(self, **kwargs: Any)->Any:
         '''fetch data based on the args passed'''
-        result = self.__session.query(User).filter_by(kwargs).first()
+        try:
+            result = self.__session.query(User).filter_by(**kwargs).first()
+            if result is None:
+                raise NoResultFound
+        except:
+            raise InvalidRequestError
         return result
