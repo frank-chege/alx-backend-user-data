@@ -6,7 +6,7 @@ from sqlalchemy import Column, String, Integer
 
 db = SQLAlchemy()
 
-class User(db.model):
+class User():
     '''user model'''
     __tablename__ = 'users'
 
