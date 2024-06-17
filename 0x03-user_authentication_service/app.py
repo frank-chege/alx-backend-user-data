@@ -38,10 +38,11 @@ def sessions():
 
 @app.route('/sessions', methods=['DELETE'])
 def delete():
+    '''deletes a users session_id'''
     try:
         sessiod_id = request.cookies.get('session_id')
         user = AUTH.get_user_from_session_id(sessiod_id)
-        redirect('/')
+        return redirect('/'), 302
     except:
         abort(403)
     AUTH.destroy_session(user.id)
