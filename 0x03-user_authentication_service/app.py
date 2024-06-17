@@ -56,15 +56,26 @@ def profile():
     else:
         return jsonify({'email': user.email}), 200
     
-@app.route('/reset_password', methods=['POST'])
+@app.route('/reset_password', methods=['POST', 'PUT'])
 def reset_password():
     '''generates a reset token'''
-    email = request.form['email']
-    try:
-        token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": email, "reset_token": token}), 200
-    except:
-        abort(403)
+    if request.method == 'POST':
+        email = request.form['email']
+        try:
+            token = AUTH.get_reset_password_token(email)
+            return jsonify({"email": email, "reset_token": token}), 200
+        except:
+            abort(403)
+    elif request.method == 'PUT':
+        email = request.form['email']
+        reset_token = request.form['reset_token']
+        new_password = request.form['new_password']
+        try:
+            AUTH.update_password(reset_token, new_password)
+            return jsonify({"email": email, "message": "Password updated"}), 200
+        except:
+            abort(403)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
