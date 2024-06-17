@@ -43,6 +43,7 @@ class Auth:
         except:
             return False
     
+    @property
     def _generate_uuid():
         '''creates a uuid'''
         return str(uuid.uuid4())
