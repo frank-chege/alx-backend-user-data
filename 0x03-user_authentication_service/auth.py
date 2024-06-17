@@ -14,7 +14,7 @@ def _hash_password(password: str)->bytes:
     hashed_pwd = bcrypt.hashpw(pwd_bytes, salt)
     return hashed_pwd
 
-def _generate_uuid(self)->str:
+def _generate_uuid()->str:
     '''creates a uuid'''
     return str(uuid4())
 
@@ -51,9 +51,11 @@ class Auth:
         '''creates a session for the user with the email'''
         try:
             user = self._db.find_user_by(email=email)
-            user.session_id = _generate_uuid()
-            self._db.__session.commit()
-            return user.session_id
+            if user is None:
+                return None
+            session_id = _generate_uuid()
+            self._db.update_user(user.id, session_id=session_id)
+            return session_id
         except:
             return None
     
