@@ -52,7 +52,7 @@ class Auth:
         try:
             user = self._db.find_user_by(email=email)
             user.session_id = _generate_uuid()
-            self._db.commit()
+            self._db.__session.commit()
             return user.session_id
         except:
             return None
