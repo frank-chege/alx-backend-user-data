@@ -54,7 +54,7 @@ def profile():
     if session_id is None or user is None:
         abort(403)
     else:
-        return jsonify({'email': user.email}), 200
+        return jsonify({'email': user.email})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
