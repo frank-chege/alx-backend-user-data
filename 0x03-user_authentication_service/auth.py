@@ -43,6 +43,6 @@ class Auth:
         except:
             return False
     
-    def _generate_uuid(self)->str:
+    def generate_uuid(self)->str:
         '''creates a uuid'''
         return str(uuid.uuid4())
