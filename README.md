@@ -1,2 +1,1 @@
-# alx-backend-user-data
-securing user data
+alx-backend-user-data
