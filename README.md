@@ -1,1 +1,1 @@
-alx-backend-user-data
+This project is on user authentication and session management
